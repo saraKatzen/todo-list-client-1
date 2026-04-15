@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;800&display=swap');
+
+:root {
+    --bg-color: #f0f4f8;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --success-color: #27ae60;
+    --danger-color: #e74c3c;
+    --text-main: #2d3436;
+    --text-done: #b2bec3;
+    --card-bg: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: 'Assistant', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    margin: 0;
+}
+
+.todoapp {
+    width: 100%;
+    max-width: 500px;
+    background: var(--card-bg);
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    /* מונע מהתוכן לצאת מהריבוע */
+    overflow: hidden; 
+}
+
+.todoapp h1 {
+    font-size: 45px;
+    font-weight: 800;
+    text-align: center;
+    margin: 10px 0 25px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* תיקון שדה הקלט - שלא יצא מהריבוע */
+.new-todo {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #edf2f7;
+    border-radius: 15px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box; /* חשוב! שומר שהפדינג לא יגדיל את האלמנט */
+    transition: 0.3s;
+}
+
+.new-todo:focus {
+    border-color: #667eea;
+}
+
+.todo-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+/* סידור השורה: הוי בצד אחד, הטקסט באמצע, האיקס בצד השני */
+.todo-list li {
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background: #fdfdfd;
+    border-radius: 15px;
+    border: 1px solid #f1f2f6;
+    justify-content: space-between; /* דוחף את האיקס לקצה */
+}
+
+.view {
+    display: flex;
+    align-items: center;
+    width: 100%; /* תופס את כל רוחב השורה */
+}
+
+/* כפתור הוי */
+.todo-list li .toggle {
+    appearance: none;
+    width: 26px;
+    height: 26px;
+    border: 2px solid #cbd5e0;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 15px;
+    flex-shrink: 0; /* מונע מהעיגול להתכווץ */
+    position: relative;
+}
+
+.todo-list li .toggle:checked {
+    background: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.todo-list li .toggle:checked::after {
+    content: '✔';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* טקסט המשימה */
+.todo-list li label {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    flex-grow: 1; /* לוקח את כל המקום הפנוי באמצע */
+    cursor: pointer;
+    word-break: break-all; /* מונע מטקסט ארוך לצאת מהשורה */
+}
+
+.todo-list li.completed label {
+    color: var(--text-done);
+    text-decoration: line-through;
+}
+
+/* כפתור האיקס - עכשיו הוא יהיה בצד ימין */
+.todo-list li .destroy {
+    background: #fff5f5;
+    border: none;
+    color: var(--danger-color);
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    flex-shrink: 0;
+    opacity: 0; /* מופיע רק כשעוברים עם העכבר */
+    transition: 0.2s;
+}
+
+.todo-list li:hover .destroy {
+    opacity: 1;
+}
+
+.todo-list li .destroy:after {
+    content: '✕';
+}
+
+/* פוטר */
+.footer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #edf2f7;
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.filters {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 5px;
+}
+
+.filters li a {
+    text-decoration: none;
+    color: var(--text-main);
+    padding: 4px 10px;
+    border-radius: 8px;
+}
+
+.filters li a.selected {
+    background: var(--primary-gradient);
+    color: white;
+}
+
+.clear-completed {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-weight: 600;
+}
