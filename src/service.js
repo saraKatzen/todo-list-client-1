@@ -40,7 +40,7 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+console.log(process.env.REACT_APP_API_URL);
 export default {
   getTasks: async () => {
     const result = await axios.get('/items');
